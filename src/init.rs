@@ -251,7 +251,6 @@ impl Init {
                 )?;
                 self.cargo_add("esp-println", Some(&[&name, "log"]), false)?;
                 self.cargo_add("log", None, false)?;
-                self.cargo_add("static_cell", None, false)?;
             }
         };
 
