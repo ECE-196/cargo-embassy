@@ -1,10 +1,9 @@
-pub mod chip;
 pub mod cli;
 pub mod error;
 mod init;
 
 use clap::Parser;
-use cli::{Cargo, Embassy, Feature};
+use cli::{Cargo, Embassy};
 use init::Init;
 
 fn main() {
@@ -12,14 +11,8 @@ fn main() {
 
     match embassy {
         Embassy::Init(args) => {
-            let init = Init::new();
+            let init = Init;
             init.run(args);
         }
-        Embassy::Docs => open::that("https://embassy.dev/book/dev/index.html")
-            .expect("Failed to open Embassy documentation page."),
-        Embassy::Feature(cmd) => match cmd {
-            Feature::List => termimad::print_text(include_str!("docs/features.md")),
-            Feature::Add => todo!(),
-        },
     }
 }

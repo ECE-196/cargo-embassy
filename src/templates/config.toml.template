@@ -1,14 +1,19 @@
 # This file was automatically generated.
 
-[target.{target}]
-runner = 'probe-rs run --chip {chip}'
+[target.xtensa-esp32s3-none-elf]
+runner = "espflash flash --monitor"
 
-[build]
-target = "{target}"
 
 [env]
-DEFMT_LOG = "trace"
+ESP_LOGLEVEL="INFO"
+
+[build]
+rustflags = [
+    "-C",
+    "link-arg=-nostartfiles",
+]
+
+target = "xtensa-esp32s3-none-elf"
 
 [unstable]
-build-std = ["core"]
-build-std-features = ["panic_immediate_abort"]
+build-std = ["core", "alloc"]
